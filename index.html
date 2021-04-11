@@ -15,14 +15,19 @@
         <div id="mymapid" style="width: 700; height:500px"></div>
         <script>
             var mymap = L.map('mymapid').setView([45.586111,-95.913889], 7);
-            L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-            maxZoom: 18,
-            id: 'mapbox/streets-v11',
-            tileSize: 512,
-            zoomOffset: -1,
-            accessToken: 'pk.eyJ1IjoiYW5vdGhlcmFzaWFuZHVkZTI1IiwiYSI6ImNrbmNkdGxxdDF5cjQyeHM5Zzd4Z2lzZ3kifQ.UMkSaN5UJdEZrTeJu9C4pg'
+            // L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+            // attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            // maxZoom: 18,
+            // id: 'mapbox/streets-v11',
+            // tileSize: 512,
+            // zoomOffset: -1,
+            // accessToken: 'pk.eyJ1IjoiYW5vdGhlcmFzaWFuZHVkZTI1IiwiYSI6ImNrbmNkdGxxdDF5cjQyeHM5Zzd4Z2lzZ3kifQ.UMkSaN5UJdEZrTeJu9C4pg'
+            // }).addTo(mymap);
+
+            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(mymap);
+
         
             var cities=[{"type":"Feature","properties":{"name":"Rochester, MN","show_on_map":true,"popupContent":"Rochester, MN"},"geometry":{"type":"Point","coordinates":[-92.4802,44.0121]}},
             {"type":"Feature","properties":{"name":"Worthington, MN","show_on_map":true,"popupContent":"Worthington, MN"},"geometry":{"type":"Point","coordinates":[-95.59604,43.623255]}},
@@ -37,7 +42,7 @@
             {"type":"Feature","properties":{"name":"Minneapolis, MN","show_on_map":true,"popupContent":"Minneapolis, MN"},"geometry":{"type":"Point","coordinates":[-93.2554,44.9782]}}];
 
             function circleConvert(feature,latlng){ // Turns GeoJSON points into circle markers
-                return new L.CircleMarker(latlng, {radius: 5, color: '#FF0000'})
+                return new L.CircleMarker(latlng, {radius: 10, color: '#FF0000'})
             }
 
             function onEachFeature(feature, layer) { // produces popups
