@@ -16,20 +16,20 @@
         <script>
             var mymap = L.map('mymapid').setView([45.586111,-95.913889], 7);
             
-            //Mapbox didn't work, so I ended up using open street map
-            //Jack Perala mentioned this website: 
-            // L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-            //     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            // }).addTo(mymap);
-
-            L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={pk.eyJ1IjoiYW5vdGhlcmFzaWFuZHVkZTI1IiwiYSI6ImNrbmNkdGxxdDF5cjQyeHM5Zzd4Z2lzZ3kifQ.UMkSaN5UJdEZrTeJu9C4pg}', {
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-            maxZoom: 18,
-            id: 'mapbox/streets-v11',
-            tileSize: 512,
-            zoomOffset: -1,
-            // accessToken: 'pk.eyJ1IjoiYW5vdGhlcmFzaWFuZHVkZTI1IiwiYSI6ImNrbmNkdGxxdDF5cjQyeHM5Zzd4Z2lzZ3kifQ.UMkSaN5UJdEZrTeJu9C4pg'
+            // Mapbox didn't work, so I ended up using open street map
+            // Jack Perala recommended this website: https://stackoverflow.com/questions/37023893/leaflet-js-map-is-not-showing-up
+            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(mymap);
+
+            // L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={pk.eyJ1IjoiYW5vdGhlcmFzaWFuZHVkZTI1IiwiYSI6ImNrbmNkdGxxdDF5cjQyeHM5Zzd4Z2lzZ3kifQ.UMkSaN5UJdEZrTeJu9C4pg}', {
+            // attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            // maxZoom: 18,
+            // id: 'mapbox/streets-v11',
+            // tileSize: 512,
+            // zoomOffset: -1,
+            // accessToken: 'pk.eyJ1IjoiYW5vdGhlcmFzaWFuZHVkZTI1IiwiYSI6ImNrbmNkdGxxdDF5cjQyeHM5Zzd4Z2lzZ3kifQ.UMkSaN5UJdEZrTeJu9C4pg'
+            // }).addTo(mymap);
 
         
             var cities=[{"type":"Feature","properties":{"name":"Rochester, MN","show_on_map":true,"popupContent":"Rochester, MN"},"geometry":{"type":"Point","coordinates":[-92.4802,44.0121]}},
@@ -42,7 +42,9 @@
             {"type":"Feature","properties":{"name":"Bemidji, MN","show_on_map":true,"popupContent":"Bemidji, MN"},"geometry":{"type":"Point","coordinates":[-94.87105,47.504496]}},
             {"type":"Feature","properties":{"name":"Morris, MN","show_on_map":true,"popupContent":"Morris, MN"},"geometry":{"type":"Point","coordinates":[-95.9092,45.584124]}},
             {"type":"Feature","properties":{"name":"St.Cloud, MN","show_on_map":true,"popupContent":"St.Cloud, MN"},"geometry":{"type":"Point","coordinates":[-94.1632,45.5579]}},
+            {"type":"Feature","properties":{"name":"Elk River, MN","show_on_map":true,"popupContent":"Elk River, MN"},"geometry":{"type":"Point","coordinates":[-93.5391,45.3377]}},
             {"type":"Feature","properties":{"name":"Minneapolis, MN","show_on_map":true,"popupContent":"Minneapolis, MN"},"geometry":{"type":"Point","coordinates":[-93.2554,44.9782]}}];
+            
 
             function circleConvert(feature,latlng){ // Turns GeoJSON points into circle markers
                 return new L.CircleMarker(latlng, {radius: 10, color: '#FF0000'})
@@ -61,7 +63,7 @@
 
             var cityLayer = L.geoJSON(cities, layerProcessing).addTo(mymap);
             
-            var path = [[44.0121,-92.4802],[43.623255,-95.59604],[47.7504,-90.3343],[46.8772,-96.7898],[48.8461,-95.7628],[44.913815,-93.17459],[46.7867,-92.1005],[47.504496,-94.87105],[45.584124,-95.9092],[45.5579,-94.1632],[44.9782,-93.2554],[44.0121,-92.4802]];
+            var path = [[44.0121,-92.4802],[43.623255,-95.59604],[47.7504,-90.3343],[46.8772,-96.7898],[45.3377,-93.5391],[48.8461,-95.7628],[44.913815,-93.17459],[46.7867,-92.1005],[47.504496,-94.87105],[45.584124,-95.9092],[45.5579,-94.1632],[44.9782,-93.2554],[44.0121,-92.4802]];
             
             var lineStyle={
                 "dashArray": [
